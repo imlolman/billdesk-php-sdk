@@ -1,0 +1,25 @@
+{
+    "name": "imlolman/billdesk-php-sdk",
+    "description": "This is unofficial php sdk for billdesk",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "BillDesk\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Satyam Gupta",
+            "email": "satyam.gupta756@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.9",
+        "guzzlehttp/guzzle": "^7.8",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "require-dev": {
+        "larapack/dd": "^1.1"
+    }
+}

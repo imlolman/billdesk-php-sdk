@@ -4,7 +4,7 @@ namespace BillDesk\APIs;
 
 use BillDesk\BaseClass;
 
-class Orders extends BaseClass
+class Order extends BaseClass
 {
     const POPUP_VIEW_PATH = __DIR__ . "/../../views/popup.php";
     const FULL_PAGE_VIEW_PATH = __DIR__ . "/../../views/fullpage.php";

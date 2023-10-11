@@ -2,7 +2,7 @@
 This is an unofficial PHP SDK for the BillDesk Payment Gateway. This is the newer implimentation of v2 that the billdesk is promoting. It is a work in progress and is not yet ready for production use.
 
 ## Contributing
-Pull requests are more than welcome. Since I am using Orders, I have created the Order Class. You are more then welcome to create other classes for other things including Refunds, etc.
+Pull requests are more than welcome. Since I am using Order, I have created the Order Class. You are more then welcome to create other classes for other things including Refunds, etc.
 
 ## Installation
 ```bash
@@ -19,7 +19,7 @@ composer require imlolman/billdesk-php-sdk
 require 'vendor/autoload.php';
 
 use BillDesk\BillDesk;
-use BillDesk\APIs\Orders;
+use BillDesk\APIs\Order;
 use Dotenv\Dotenv;
 
 $mode = "DEV"; // DEV or PROD
@@ -41,12 +41,12 @@ $billDesk = BillDesk::init([
     "MODE" => $_ENV['MODE'],
 ]);
 
-$orders = new Orders();
+$order = new Order();
 $order_id = uniqid(); // Your Order ID Here
-$order = $orders->createOrder($order_id, "1.00");
+$order = $order->createOrder($order_id, "1.00");
 
 # If you want to use full page HTML, else use the below code
-$fullpage_html = $orders->getFullPageHTML($order, [
+$fullpage_html = $order->getFullPageHTML($order, [
     "prefs" => [
         "payment_categories" => ["qr", "upi", "card", "nb"]
     ],
@@ -56,7 +56,7 @@ $fullpage_html = $orders->getFullPageHTML($order, [
 echo $fullpage_html;
 
 # You can also use the below code to get the popup scripts and inject it into your page Manually 
-$popup_script = $orders->getPopupScripts($order, [
+$popup_script = $order->getPopupScripts($order, [
     "prefs" => [
         "payment_categories" => ["qr", "upi", "card", "nb"]
     ],
@@ -73,7 +73,7 @@ echo $popup_script;
 require 'vendor/autoload.php';
 
 use BillDesk\BillDesk;
-use BillDesk\APIs\Orders;
+use BillDesk\APIs\Order;
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
@@ -87,8 +87,8 @@ $billDesk = BillDesk::init([
 ]);
 
 try{
-    $orders = new Orders();
-    $order = $orders->validateOrder();
+    $order = new Order();
+    $order = $order->validateOrder();
 
     // Do something with the order, since it is validated.
     // Below is the order structure.

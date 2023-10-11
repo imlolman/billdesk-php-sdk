@@ -67,8 +67,20 @@ class BaseClass
 
             return $this->decodePayload($result);
         } catch (RequestException $e) {
-            // Handle exception
-            echo $e->getMessage();
+            $error = $e->getMessage();
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                $responseBodyAsString = $response->getBody()->getContents();
+                // Decode and output the response body if needed
+                try {
+                    $decodedResponseBody = $this->decodePayload($responseBodyAsString);
+                    $error .= "Decoded Error Response: ".json_encode($decodedResponseBody);
+                } catch (\Exception $decodeException) {
+                    $error .= "Error Response: ".$responseBodyAsString;
+                }
+            }
+            
+            throw new \Exception($error);
         }
     }
 

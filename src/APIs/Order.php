@@ -94,7 +94,6 @@ class Order extends BaseClass
     public function validateOrder(){
 
         try{
-
             if(!isset($_POST["transaction_response"])){
                 throw new \Exception("Transaction Response not found.");
             }
